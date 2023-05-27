@@ -9,7 +9,7 @@
 <header th:insert="~{/blocks/header :: header}" />
 <div class="flex w-full flex-col justify-center items-center">
     <h1 class="font-semibold text-4xl">Make a place on graveyard!</h1>
-    <form class="flex w-1/5 flex-col justify-center mt-3" action="#" th:action="@{/createCoffin}" th:object="${coffin}" method="POST">
+    <form class="flex w-1/5 flex-col justify-center mt-3" action="#" th:action="@{/graveCreator}" th:object="${grave}" method="POST">
         <p>
             Name:
             <input
@@ -43,7 +43,6 @@
                     class="rounded border-2 border-black-500"
                     type="text"
                     th:field="*{photo}"
-                    required
             />
         </p>
         <p><input

@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.UserDto;
+import com.example.demo.entity.Grave;
+import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.repository.UserRepository;
@@ -18,6 +20,8 @@ public class UserService {
 
     public UserService(UserRepository userRepository,RoleService roleService) {this.userRepository = userRepository;
         this.roleService = roleService;}
+
+
 
     public List<User> getUsers(){
         return this.userRepository.findAll();
@@ -64,5 +68,10 @@ public class UserService {
         roleService.setAdminRole(candidate);
         User updatedUser=userRepository.save(candidate);
         return UserMapper.map(updatedUser);
+    }
+
+    public void setUser(Grave grave, Long userId){
+        Optional<User> user = userRepository.findById(userId);
+        grave.setUser(user.get());
     }
 }

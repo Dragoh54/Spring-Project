@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.UserDto;
+import com.example.demo.entity.Grave;
 import com.example.demo.entity.User;
 import com.example.demo.exception.MainException;
 import com.example.demo.mapper.UserMapper;

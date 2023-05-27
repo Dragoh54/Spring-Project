@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "Graves")
@@ -16,7 +15,7 @@ public class Grave {
     @Column(name = "Material", nullable = false)
     private String material;
 
-    @Column(name = "PersonName", nullable = false)
+    @Column(name = "Name", nullable = false)
     private String name;
 
     @Column(name = "Description")
@@ -35,6 +34,8 @@ public class Grave {
         this.description = description;
         this.photo = photo;
     }
+
+    public Grave() {}
 
     public Long getGraveId() {
         return graveId;
