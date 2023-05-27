@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Creation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+<header th:insert="~{/blocks/header :: header}" />
+<div class="flex w-full flex-col justify-center items-center">
+    <h1 class="font-semibold text-4xl">Make a place on graveyard!</h1>
+    <form class="flex w-1/5 flex-col justify-center mt-3" action="#" th:action="@{/createCoffin}" th:object="${coffin}" method="POST">
+        <p>
+            Name:
+            <input
+                    class="rounded border-2 border-black-500"
+                    type="text"
+                    th:field="*{name}"
+                    required
+            />
+        </p>
+        <p>
+            Material:
+            <input
+                    class="rounded border-2 border-black-500"
+                    type="text"
+                    th:field="*{material}"
+                    required
+            />
+        </p>
+        <p>
+            Description:
+            <input
+                    class="rounded border-2 border-black-500"
+                    type="text"
+                    th:field="*{description}"
+                    required
+            />
+        </p>
+        <p>
+            Photo:
+            <input
+                    class="rounded border-2 border-black-500"
+                    type="text"
+                    th:field="*{photo}"
+                    required
+            />
+        </p>
+        <p><input
+                class="rounded border-2 border-black-500" type="submit" value="Create!" /></p>
+    </form>
+    <p class="justify-center mt-4 text-xl font-semibold text-red-500" th:text="${errorMessage}"/>
+</div>
+</body>
+</html>

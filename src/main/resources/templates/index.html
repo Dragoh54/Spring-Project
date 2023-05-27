@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="flex mt-60 text-8xl font-semibold justify-center">WellCum</h1>
+<div class="flex font-semibold justify-center m-auto space-x-10 w-96 h-96 flex-center pt-40">
+    <a class="hover:bg-gray-500 h-20 rounded hover:text-white font-semibold text-4xl p-4" th:href="@{/login}">Login</a>
+    <a class="hover:bg-gray-500 h-20 rounded hover:text-white font-semibold text-4xl p-4" th:href="@{/register}">Register</a>
+</div>
+</body>
+</html>

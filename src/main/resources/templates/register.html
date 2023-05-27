@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+  <div class="flex w-full flex-col justify-center items-center my-40">
+    <h1 class="font-semibold text-5xl m-10">Register bro</h1>
+    <form class="flex w-3/12 flex-col justify-center mt-3" action="#" th:action="@{/register}" th:object="${user}" method="POST">
+      <p class="flex flex-row justify-between m-5 font-semibold text-xl">
+        Username:
+        <input
+                class="rounded border-2 border-black-500"
+                type="text"
+                th:field="*{username}"
+                required
+        />
+      </p>
+      <p class="flex flex-row justify-between m-5 font-semibold text-xl">
+        Email:
+        <input
+                class="rounded border-2 border-black-500"
+                type="text"
+                th:field="*{email}"
+                required
+        />
+      </p>
+      <p class="flex flex-row justify-between m-5 font-semibold text-xl">
+        Password:
+        <input
+                class="rounded border-2 border-black-500"
+                type="password"
+                th:field="*{password}"
+                required
+        />
+      </p>
+      <p class="m-auto">
+        <input class="rounded border-2 border-black-500 w-64 text-xl font-semibold h-10 mt-4" type="submit" value="Register" />
+      </p>
+    </form>
+    <p class="justify-center mt-4 text-xl font-semibold text-red-500" th:text="${errorMessage}"/>
+  </div>
+  </body>
+</html>
