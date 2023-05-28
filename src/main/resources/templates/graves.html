@@ -1,24 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-<table class="mx-3">
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Material</th>
-    </tr>
-    <tr class="user-card" th:each="grave : ${graves}">
-        <td class="border-solid border-2 border-sky-500" ><a th:text="${grave.name}"></a></td>
-        <td class="border-solid border-2 border-sky-500" th:text="${grave.description}"></td>
-        <td class="text-center border-solid border-2 border-sky-500" th:text="${grave.material}"></td>
-        <td class="border-solid border-2 border-sky-500">
-            <a th:href="@{/deleteGrave/{id}(id=${grave.graveId})}" onclick="return confirm('Вы уверены, что хотите удалить гроб?')">Удалить гроб</a>
-        </td>
-    </tr>
-</table>
+<header th:insert="~{/blocks/header :: header}" />
+<div class="flex justify-center my-20 w-1/2 flex-col mx-auto">
+    <h1 class="font-semibold text-5xl m-10 flex justify-center"> Your besties!</h1>
+    <div class="grid grid-cols-3 gap-x-3 my-10" th:each="grave : ${graves}">
+        <img
+                th:src="${grave.photo}" width="150" height="150" th:alt="${grave.name}"
+                class="flex justify-self-center filter grayscale border-2 border-black m-auto"
+        >
+        <div class="flex flex-col space-y-4 min-w-96 text-2xl m-auto">
+            <p class="font-semibold" th:text="${grave.name}"/>
+            <p th:text="${grave.description}"/>
+            <p th:text="${grave.material}"/>
+        </div>
+        <p class="flex justify-center">
+            <a th:href="@{/deleteGrave/{id}(id=${grave.graveId})}" onclick="return confirm('Are you sure?')" class="max-w-50 max-h-50 m-auto">
+                <img src="https://www.oma.by/upload/Sh/imageCache/cc7/6fe/e6d91fe6743ad3b981275c5a91dd4b78.png"
+                    width="100" height="100"
+                     class="flex justify-self-center border-2 border-black"
+                >
+            </a>
+        </p>
+    </div>
+</div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Movie Creation</title>
@@ -7,10 +7,10 @@
 </head>
 <body>
 <header th:insert="~{/blocks/header :: header}" />
-<div class="flex w-full flex-col justify-center items-center">
-    <h1 class="font-semibold text-4xl">Make a place on graveyard!</h1>
-    <form class="flex w-1/5 flex-col justify-center mt-3" action="#" th:action="@{/graveCreator}" th:object="${grave}" method="POST">
-        <p>
+<div class="flex w-full flex-col justify-center items-center my-20">
+    <h1 class="font-semibold text-5xl m-10">Make a best present!</h1>
+    <form class="flex w-1/3 flex-col justify-center mt-3" action="#" th:action="@{/graveCreator}" th:object="${grave}" method="POST">
+        <p class="flex flex-row justify-between m-5 font-semibold text-xl">
             Name:
             <input
                     class="rounded border-2 border-black-500"
@@ -19,7 +19,7 @@
                     required
             />
         </p>
-        <p>
+        <p class="flex flex-row justify-between m-5 font-semibold text-xl">
             Material:
             <input
                     class="rounded border-2 border-black-500"
@@ -28,7 +28,7 @@
                     required
             />
         </p>
-        <p>
+        <p class="flex flex-row justify-between m-5 font-semibold text-xl">
             Description:
             <input
                     class="rounded border-2 border-black-500"
@@ -37,7 +37,7 @@
                     required
             />
         </p>
-        <p>
+        <p class="flex flex-row justify-between m-5 font-semibold text-xl">
             Photo:
             <input
                     class="rounded border-2 border-black-500"
@@ -45,8 +45,9 @@
                     th:field="*{photo}"
             />
         </p>
-        <p><input
-                class="rounded border-2 border-black-500" type="submit" value="Create!" /></p>
+        <p class="m-auto">
+            <input class="rounded border-2 border-black-500 w-64 text-xl font-semibold h-10 mt-4" type="submit" value="Create!" />
+        </p>
     </form>
     <p class="justify-center mt-4 text-xl font-semibold text-red-500" th:text="${errorMessage}"/>
 </div>

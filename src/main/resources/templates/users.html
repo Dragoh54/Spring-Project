@@ -8,19 +8,18 @@
 <body>
 <header th:insert="~{/blocks/header :: header}" />
 
-<div class="flex w-full flex-col justify-center items-center">
-    <table class="users-list mx-3">
-      <tr>
-          <th>Username</th>
-        <th>Email</th>
-        <th>Role</th>
-      </tr>
-      <tr class="user-card" th:each="user : ${users}">
-          <td class="border-solid border-2 border-sky-500" th:text="${user.username}"></td>
-          <td class="border-solid border-2 border-sky-500" th:text="${user.email}"></td>
-          <td class="border-solid border-2 border-sky-500" th:text="${user.role.name}"></td>
-      </tr>
-    </table>
+<div class="flex justify-center my-20 w-1/5 flex-col mx-auto">
+    <h1 class="font-semibold text-5xl m-10 flex justify-center"> Users</h1>
+    <div class="grid grid-cols-3 gap-x-3 my-10 text-2xl font-semibold">
+        <p class="m-auto"> username </p>
+        <p class="m-auto"> email </p>
+        <p class="m-auto"> role </p>
+    </div>
+    <div class="grid grid-cols-3 gap-x-3 my-10 text-2xl" th:each="user : ${users}">
+        <p class="m-auto" th:text="${user.username}"/>
+        <p class="m-auto" th:text="${user.email}"/>
+        <p class="m-auto min-w-64" th:text="${user.role.name}"/>
+    </div>
 </div>
 </body>
 </html>

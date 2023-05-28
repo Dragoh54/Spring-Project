@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface GraveRepository extends JpaRepository<Grave, Long> {
     Optional<Grave> findById(Long id);
     Optional<Grave> findByName(String name);
+    List<Grave> findGravesByName(String name);
     @Query("SELECT g FROM Graves g WHERE g.user.userId = :userId")
     List<Grave> findByUserId(Long userId);
 }

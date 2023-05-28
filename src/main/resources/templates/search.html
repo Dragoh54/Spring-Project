@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+<header th:insert="~{/blocks/header :: header}" />
+<div class="flex w-full flex-col justify-center items-center text-2xl">
+  <div class="flex justify-center my-20 w-1/2 flex-col mx-auto">
+    <h1 class="font-semibold text-5xl m-10 flex justify-center"> Find your bro</h1>
+    <form class="flex justify-center" action="#" th:action="@{/search}" method="POST">
+      <p class="m-auto w-full">
+        <input
+                class="rounded border-2 border-black-500 w-full"
+                type="text"
+                name="name"
+                placeholder="Search name"
+        />
+      </p>
+      <p class="m-auto px-5">
+        <input
+              class="rounded border-2 border-black-500 m-auto" type="submit" value="Submit"
+        />
+      </p>
+    </form>
+    <div class="grid grid-cols-2 gap-x-3 my-10" th:each="grave : ${graves}">
+      <img
+              th:src="${grave.photo}" width="150" height="150" th:alt="${grave.name}"
+              class="flex justify-self-center filter grayscale border-2 border-black m-auto"
+      >
+      <div class="flex flex-col space-y-4 min-w-96 text-2xl m-auto">
+        <p class="font-semibold" th:text="${grave.name}"/>
+        <p th:text="${grave.description}"/>
+        <p th:text="${grave.material}"/>
+      </div>
+    </div>
+  </div>
+  <p class="justify-center mt-4 text-xl font-semibold text-red-500" th:text="${errorMessage}"/>
+</div>
+</body>
+</html>

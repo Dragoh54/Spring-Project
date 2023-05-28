@@ -53,6 +53,10 @@ public class UserService {
         if (candidate != null) {
             throw new MainException("User with this email already exists!");
         }
+        if(!user.getEmail().matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"))
+        {
+            throw new MainException("Incorrect email!");
+        }
         roleService.setUserRole(user);
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));

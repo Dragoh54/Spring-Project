@@ -9,9 +9,12 @@ import com.example.demo.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.support.WebExchangeBindException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,7 +54,7 @@ public class UsersController {
     }
 
     @PostMapping("register")
-    public String register(@ModelAttribute User candidate, HttpServletRequest request,Model model) throws MainException {
+    public String register(@ModelAttribute User candidate, HttpServletRequest request,Model model) {
         try {
             UserDto user=userService.registerUser(candidate);
             request.getSession().setAttribute("user", user);
@@ -77,6 +80,10 @@ public class UsersController {
     @GetMapping("users")
     public String getUsers(HttpServletRequest request,Model model) {
         UserDto user=(UserDto) request.getSession().getAttribute("user");
+        if(user==null){
+            return "redirect:/";
+        }
+        model.addAttribute("user", user);
         if(user.getRole().getName().equals("Admin")){
             List<UserDto> users=userService.getUsers().stream().map(UserMapper::map).collect(Collectors.toList());
             model.addAttribute("users", users);

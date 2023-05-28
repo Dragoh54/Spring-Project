@@ -36,10 +36,20 @@ public class GraveService {
         return candidate.get();
     }
 
-    public void addGrave(Grave newGrave) throws MainException {
+    public List<Grave> findGravesByName(String name) throws MainException{
+        List<Grave> graves = graveRepository.findGravesByName(name);
+        if(graves.isEmpty()){
+            throw new MainException("No graves(");
+        }
+        return graves;
+    }
+
+    public void addGrave(Grave newGrave, Long userId) throws MainException {
         Optional<Grave> candidate = graveRepository.findByName(newGrave.getName());
-        if(!candidate.isPresent()){
-            throw new MainException("Grave with this person already exist!");
+        List<Grave> graves = graveRepository.findByUserId(userId);
+        if(candidate.isPresent()){
+            if(graves.contains(candidate.get()))
+                throw new MainException("Grave with this person already exist!");
         }
         graveRepository.save(newGrave);
     }
